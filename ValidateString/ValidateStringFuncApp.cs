@@ -20,13 +20,14 @@ namespace ValidateString
             log.LogInformation("C# HTTP trigger function processed a request.");
             
             string stringToValidate = req.Query["toValidate"];
+            string responseMessage;
 
             if (stringToValidate == null)
-                stringToValidate = "";
-
-            string responseMessage = Solution.ValidateString(stringToValidate)
-                ? "String is valid"
-                : "String is not valid";           
+                responseMessage = "No string provided";
+            else 
+                responseMessage = Solution.ValidateString(stringToValidate)
+                    ? "String is valid"
+                    : "String is not valid";           
 
             return new OkObjectResult(responseMessage);
         }
