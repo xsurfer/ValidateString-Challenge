@@ -21,7 +21,7 @@ namespace ValidateStringTest
             Assert.IsFalse(Solution.IsOpeningBracket('b'));
             Assert.IsFalse(Solution.IsOpeningBracket('%'));
         }
-
+ 
         [TestMethod]
         public void MatchBracket_ValidBrackets()
         {
@@ -41,10 +41,12 @@ namespace ValidateStringTest
         [TestMethod]
         public void ValidateString_ValidStrings()
         {
+            Assert.IsTrue(Solution.ValidateString(""));
             Assert.IsTrue(Solution.ValidateString("()"));
             Assert.IsTrue(Solution.ValidateString("[]"));
             Assert.IsTrue(Solution.ValidateString("{}"));
             Assert.IsTrue(Solution.ValidateString("([{{}}])"));
+            Assert.IsTrue(Solution.ValidateString("{[()]}[](){}"));
         }
 
         [TestMethod]
@@ -53,6 +55,8 @@ namespace ValidateStringTest
             Assert.IsFalse(Solution.ValidateString("([)"));
             Assert.IsFalse(Solution.ValidateString("[([)]"));
             Assert.IsFalse(Solution.ValidateString("]["));
+            Assert.IsFalse(Solution.ValidateString("]"));
+            Assert.IsFalse(Solution.ValidateString("["));
         }
 
     }

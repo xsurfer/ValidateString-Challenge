@@ -18,18 +18,15 @@ namespace ValidateString
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string responseMessage;
+            
             string stringToValidate = req.Query["toValidate"];
 
             if (stringToValidate == null)
-                responseMessage = "No string received";
-            else if (stringToValidate.Length == 0)
-                responseMessage = "Empty string received";
-            else                       
-                responseMessage = Solution.ValidateString(stringToValidate)
-                    ? "String is valid"
-                    : "String is not valid";           
+                stringToValidate = "";
+
+            string responseMessage = Solution.ValidateString(stringToValidate)
+                ? "String is valid"
+                : "String is not valid";           
 
             return new OkObjectResult(responseMessage);
         }
